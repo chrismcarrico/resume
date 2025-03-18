@@ -1,0 +1,262 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{hyphenat}
+\usepackage{fontawesome}
+\input{glyphtounicode}
+
+
+%---------- FONT OPTIONS ----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.7in}
+\addtolength{\evensidemargin}{-0.3in}
+\addtolength{\textwidth}{1.25in}
+\addtolength{\topmargin}{-.8in}
+\addtolength{\textheight}{0.5in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-2pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+
+\newcommand{\resumeSubSubheading}[2]{
+    \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+
+\newcommand{\resumeEducationHeading}[6]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+      \textit{\small#5} & \textit{\small #6} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+
+\newcommand{\resumeProjectHeading}[2]{
+    \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+
+\newcommand{\resumeOrganizationHeading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textit{\small #2} \\
+      \textit{\small#3}
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+% https://www.johndcook.com/blog/2011/10/18/typesetting-c-in-latex/
+\newcommand{\Cplusplus}{C\nolinebreak\hspace{-.05em}\raisebox{.4ex}{\tiny\bf +}\nolinebreak\hspace{-.10em}\raisebox{.4ex}{\tiny\bf +} }
+\newcommand{\Csharp}{C\nolinebreak\hspace{-.05em}\raisebox{.6ex}{\tiny\bf \#} }
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%---------- HEADING ----------
+
+\begin{center}
+    \textbf{\Huge \scshape Christian Carrico} \\ \vspace{1pt}
+    \small
+    \faMobile \hspace{.5pt} (303)-517-2910
+    $|$
+    \faAt \hspace{.5pt} chrismcarrico@gmail.com
+    $|$
+    \faLinkedinSquare \hspace{.5pt} linkedin.com/in/chrismcarrico
+\end{center}
+
+%----------- EDUCATION -----------
+
+\section{Education}
+  \vspace{2pt}
+  \resumeSubHeadingListStart
+    \resumeEducationHeading
+      {Colorado State University}{Fort Collins, CO}
+      {B.S. in Cmputer Engineering}{Aug 2012 \textbf{--} Dec 2017}
+      {B.S. in Mathematics, Concentration in Information Security}{Aug 2012 \textbf{--} Dec 2017}
+  \resumeSubHeadingListEnd
+
+%----------- PROJECTS -----------
+
+\section{Projects}
+    \vspace{2pt}
+    \resumeSubHeadingListStart
+      
+      \resumeProjectHeading
+        {\textbf{AFSIM Reinforcement Learning Environment}}{}
+          \resumeItemListStart
+            \resumeItem{Developed Python code for generating missile defense AFSIM simulations to train a reinforcement learning agent}
+            \resumeItem{Implemented scripts using Regex and Jinja2 to automatically build Python interfaces for hundreds of AFSIM models}
+            \resumeItem{Designed and implemented a novel graph observation space using the Python packages networkx and DGL}
+          \resumeItemListEnd
+      
+      \resumeProjectHeading
+        {\textbf{Containerized, CI/CD, and Optimization of Development Environment}}{}
+          \resumeItemListStart
+            \resumeItem{Used Docker and Docker-Compose to build and deploy a Python/\Cplusplus development environment}
+            \resumeItem{Reduced container size by 60\% vastly improving deployments and build times}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+        {\textbf{M\&S Framework Tradestudy}}{}
+          \resumeItemListStart
+            \resumeItem{Led the research and assessment of multiple M\&S frameworks, coordinating efforts across a team of government civilians and contractors}
+            \resumeItem{Formalized use cases and criteria to objectively evaluate the most suitable framework}
+            \resumeItem{Compiled findings into a report and briefed results to leadership}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+        {\textbf{Workflow Planning Web Application}}{}
+          \resumeItemListStart
+            \resumeItem{Lead development of a COCOM exercise planning tool using Agile methodologies}
+            \resumeItem{Dramatically improved codebase quality by refactoring \Csharp controllers and standardizing JavaScript web views}
+          \resumeItemListEnd
+      
+    \resumeSubHeadingListEnd
+
+%----------- EXPERIENCE -----------
+
+\section{Experience}
+  \vspace{2pt}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Combat Capability Development Command}{Colorado Springs, CO}
+      {Computer Engineer}{April 2018 \textbf{--} Present, Full-time}
+        \resumeItemListStart
+            \resumeItem{Drove progress of multiple Python projects by facilitating planning discussions and tasking government developers and contractors across various organizations and companies}
+            \resumeItem{Employed Amazon Web Services to deploy critical infrastructure such as CI/CD pipelines and collaboration tools to support various government efforts}
+            \resumeItem{Leveraged technologies such as the Atlassian tool suite and GitLab to capture customer requirements, document design decisions, and streamline the development process}
+            \resumeItem{Engaged with small businesses on SBIR/STTR contracts to monitor progress and deliverables while providing technical guidance to maximize government return on investment}
+            \resumeItem{Mentored student interns by delegating meaningful tasks that foster skill development and professional growth}
+            \resumeItem{Evaluated research proposals for technical and commercial merit, ensuring alignment with Agency priorities and Army objectives}
+        \resumeItemListEnd
+
+    \resumeSubheading
+      {Electrical \& Computer Engineering College}{Fort Collins, CO}
+      {Student Ambassador}{Aug 2012 \textbf{--} Aug 2014, Part-time}
+        \resumeItemListStart
+            \resumeItem{Engaged prospective students during recruitment events to promote interest in the college's programs and drive enrollment growth}
+        \resumeItemListEnd
+
+    \resumeSubheading
+      {Colorado State University Advanced Beam Laboratory}{Fort Collins, CO}
+      {Intern}{Aug 2012 \textbf{--} July 2014, Part-time}
+        \resumeItemListStart
+            \resumeItem{Designed and managed PHP website while currating content to showcase laboratory research and personal}
+        \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%----------- AWARDS & ACHIEVEMENTS -----------
+
+\section{Awards \& Achievements}
+  \vspace{2pt}
+  \resumeSubHeadingListStart
+    \small{\item{ 
+        \textbf{SBIR Thing:}{ Placeholder } \\ \vspace{3pt}
+        \textbf{Exercise Thing:}{ Placeholder } \\ \vspace{3pt}
+
+    }}
+  \resumeSubHeadingListEnd
+
+%----------- CERTIFICATES -----------
+
+\section{Certificates}
+  \resumeSubHeadingListStart
+    
+    \resumeOrganizationHeading
+      {Engineering \& Technical Management DAWIA Certificate}{Feb 2020}{ Placeholder }
+    
+  \resumeSubHeadingListEnd
+
+%----------- SKILLS -----------
+
+% \section{Skills}
+%   \vspace{2pt}
+%   \resumeSubHeadingListStart
+%     \small{\item{
+        
+%         \textbf{Languages: }{Python, C, \Cplusplus,  \Csharp,  Javascript } \\ \vspace{3pt}
+        
+%         \textbf{Technologies: }{Docker, Docker Compose, Git } \\ \vspace{3pt}
+        
+%         \textbf{Methodologies: }{Agile, } \\ \vspace{3pt}
+        
+%     }}
+%   \resumeSubHeadingListEnd
+
+\end{document}
