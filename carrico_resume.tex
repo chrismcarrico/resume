@@ -13,20 +13,8 @@
 \usepackage{tabularx}
 \usepackage{hyphenat}
 \usepackage{fontawesome}
+\usepackage{charter}
 \input{glyphtounicode}
-
-
-%---------- FONT OPTIONS ----------
-% sans-serif
-% \usepackage[sfdefault]{FiraSans}
-% \usepackage[sfdefault]{roboto}
-% \usepackage[sfdefault]{noto-sans}
-% \usepackage[default]{sourcesanspro}
-
-% serif
-% \usepackage{CormorantGaramond}
-% \usepackage{charter}
-
 
 \pagestyle{fancy}
 \fancyhf{} % clear all header and footer fields
@@ -39,7 +27,7 @@
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1in}
 \addtolength{\topmargin}{-.5in}
-\addtolength{\textheight}{1.0in}
+\addtolength{\textheight}{1.15in}
 
 \urlstyle{same}
 
@@ -47,75 +35,53 @@
 \raggedright
 \setlength{\tabcolsep}{0in}
 
-% Sections formatting
+% Section rule: dark gray instead of pure black, slightly thinner
+\definecolor{sectionrule}{gray}{0.25}
+
 \titleformat{\section}{
   \vspace{-5pt}\scshape\raggedright\large
-}{}{0em}{}[\color{black}\titlerule \vspace{-3pt}]
+}{}{0em}{}[\color{sectionrule}{\titlerule[0.6pt]} \vspace{-3pt}]
+
+% Subtle bullet glyph instead of the default solid dot
+\renewcommand{\labelitemii}{\raisebox{0.4ex}{\rule{2.2pt}{2.2pt}}}
 
 % Ensure that generate pdf is machine readable/ATS parsable
 \pdfgentounicode=1
 
 %-------------------------
 % Custom commands
+%
+% Layout model for one entry:
+%   \heading{Name}{Location}      bold left / plain right, starts the entry
+%   \subtitle{Title}{Date range}  italic left / italic right, optional, no
+%                                 new bullet -- renders directly under \heading
+%   \begin{bullets} \item ... \end{bullets}   optional detail bullets
 
-\newcommand{\resumeItem}[1]{
-  \item\small{
-    {#1 \vspace{-2pt}}
-  }
-}
+% Each transition's spacing is owned by exactly one place: the gap between
+% entries lives on \heading's leading vspace, the gap between a heading and
+% its subtitle lives on \subtitle's leading vspace, and the gap before the
+% detail bullets lives on \bullets' leading vspace.
+\newenvironment{entries}
+  {\begin{itemize}[leftmargin=0.15in, label={}, topsep=0pt, parsep=0pt, itemsep=0pt]}
+  {\end{itemize}}
 
+\newenvironment{bullets}
+  {\vspace{-10pt}\begin{itemize}[topsep=0pt, partopsep=0pt]\small}
+  {\end{itemize}}
 
-\newcommand{\resumeSubheading}[4]{
-  \vspace{-2pt}\item
+\newcommand{\heading}[2]{
+  \vspace{4pt}\item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
-      \textit{\small#3} & \textit{\small #4} \\
-    \end{tabular*}\vspace{-7pt}
+      \textbf{#1} & \small#2 \\
+    \end{tabular*}
 }
 
-
-\newcommand{\resumeSubSubheading}[2]{
-    \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+\newcommand{\subtitle}[2]{
+    \vspace{2pt}
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
       \textit{\small#1} & \textit{\small #2} \\
-    \end{tabular*}\vspace{-7pt}
+    \end{tabular*}
 }
-
-
-\newcommand{\resumeEducationHeading}[6]{
-  \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & #2 \\
-      \textit{\small#3} & \textit{\small #4} \\
-      \textit{\small#5} & \textit{\small #6} \\
-    \end{tabular*}\vspace{-5pt}
-}
-
-
-\newcommand{\resumeProjectHeading}[2]{
-    \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \small#1 & #2 \\
-    \end{tabular*}\vspace{-7pt}
-}
-
-
-\newcommand{\resumeOrganizationHeading}[4]{
-  \vspace{-2pt}\item
-    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
-      \textbf{#1} & \textit{\small #2} \\
-      \textit{\small#3}
-    \end{tabular*}\vspace{-7pt}
-}
-
-\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
-
-\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
-
-\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
-\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
-\newcommand{\resumeItemListStart}{\begin{itemize}}
-\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 
 % https://www.johndcook.com/blog/2011/10/18/typesetting-c-in-latex/
 \newcommand{\Cplusplus}{C\nolinebreak\hspace{-.05em}\raisebox{.4ex}{\tiny\bf +}\nolinebreak\hspace{-.10em}\raisebox{.4ex}{\tiny\bf +} }
@@ -138,109 +104,87 @@
 %----------- SKILLS -----------
 
 % \section{Skills}
-%   \vspace{2pt}
-%   \resumeSubHeadingListStart
-%     \small{\item{
-        
-%         \textbf{Languages: }{Python, C, \Cplusplus,  \Csharp,  Javascript} \\ \vspace{3pt}
-%         \textbf{Technologies: }{Docker, Docker Compose, Git, AWS } \\ \vspace{3pt}
-%         \textbf{Methodologies: }{Agile, CI/CD, Test Driven Development } \\ \vspace{3pt}
-        
-%     }}
-%   \resumeSubHeadingListEnd
-
-%----------- PROJECTS -----------
-
-\section{Projects}
-    \vspace{2pt}
-    \resumeSubHeadingListStart
-      
-      \resumeProjectHeading
-        {\textbf{AFSIM Reinforcement Learning Environment}}{}
-          \resumeItemListStart
-            \resumeItem{Designed and delivered solutions for a Python Reinforcement Learning environment that integrates AFSIM and graph based observations to optimize blue force outcomes}
-            \resumeItem{Developed code to procedurally generate sufficiently random AFSIM scenarios, providing a reinforcement learning agent with enough experiences to enhance generalization across the entire problem space}
-            \resumeItem{Built Regex- and Jinja2-powered scripts to parse hundreds of AFSIM model files into a Python interface, enabling better scenario generation and a richer feature space}
-            \resumeItem{Optimized Docker and Docker Compose configurations, reducing environment development image size by 60\%, dramatically reducing build times and accelerating deployments to a classified network}
-          \resumeItemListEnd
-
-      \resumeProjectHeading
-        {\textbf{Modeling \& Simulation Framework Trade Study}}{}
-          \resumeItemListStart
-            \resumeItem{Directed research and assessment of multiple M\&S frameworks, coordinating tasks with government and contractor personnel}
-            \resumeItem{Developed objective evaluation criteria and formalized use cases to determine the most suitable framework}
-            \resumeItem{Compiled findings into a comprehensive report and presented key insights to leadership for decision-making}
-          \resumeItemListEnd
-
-      \resumeProjectHeading
-        {\textbf{Workflow Planning Web Application}}{}
-          \resumeItemListStart
-            \resumeItem{Led the development of a COCOM exercise planning tool by using Agile methodologies to integrate feedback from Warfighters into tasks for the next sprint}
-            \resumeItem{Enhanced codebase quality by refactoring \Csharp controllers and standardizing JavaScript web views, improving maintainability and simplifying feature delivery}
-          \resumeItemListEnd
-      
-    \resumeSubHeadingListEnd
+% \vspace{2pt}
+% \begin{entries}
+%   \small{\item{
+%       \textbf{Languages: }{Python, C, \Cplusplus,  \Csharp,  Javascript} \\ \vspace{3pt}
+%       \textbf{Technologies: }{Docker, Docker Compose, Git, AWS } \\ \vspace{3pt}
+%       \textbf{Methodologies: }{Agile, CI/CD, Test Driven Development } \\ \vspace{3pt}
+%   }}
+% \end{entries}
 
 %----------- EXPERIENCE -----------
 
 \section{Experience}
-  \vspace{2pt}
-  \resumeSubHeadingListStart
+\vspace{2pt}
+\begin{entries}
 
-  \resumeSubheading
-    {U.S. Army DEVCOM Aviation \& Missile Center}{Colorado Springs, CO}
-    {Technical Lead}{Mar 2025 \textbf{--} Present}
-      \resumeItemListStart
-        \resumeItem{Led engineering teams of government, FFRDC, and contractor personnel to deliver AI/ML research as operational software capabilities for the Warfighter}
-        \resumeItem{Developed and presented technical roadmaps to senior leadership, communicating milestones, risks, and challenges to guide strategic decisions}
-        \resumeItem{Briefed potential stakeholders on project capabilities to drive engagement and buy-in from COCOMs and other DoD organizations} 
-      \resumeItemListEnd
+  \heading{The Aerospace Corporation}{Colorado Springs, CO}
+  \subtitle{Modeling \& Simulations Systems Architect}{Mar 2026 \textbf{--} Present}
+  \begin{bullets}
+    \item Placeholder
+    \item[] \textbf{SPOT Award} for [describe accomplishment]
+  \end{bullets}
 
-    \resumeSubheading
-      {U.S. Army DEVCOM Aviation \& Missile Center}{Colorado Springs, CO}
-      {Software Engineer}{Apr 2018 \textbf{--} Mar 2025}
-        \resumeItemListStart
-            \resumeItem{Employed Amazon Web Services to deploy critical infrastructure such as CI/CD pipelines and collaboration tools to support various government efforts}
-            \resumeItem{Leveraged technologies such as the Atlassian tool suite and GitLab to capture customer requirements, document design decisions, and accelerate the development process}
-            \resumeItem{Partnered with small businesses on SBIR/STTR contracts, overseeing progress and deliverables while providing technical guidance to maximize government value}
-            \resumeItem{Utilized SysML and Cameo to develop system models, supporting early-stage architecture design, analysis, and CONOPs}
-            \resumeItem{Mentored student interns and new employees by delegating meaningful tasks that foster skill development and professional growth}
-            \resumeItem{Evaluated research proposals for technical and commercial merit while ensuring alignment with Agency priorities}
-        \resumeItemListEnd
+  \heading{U.S. Army DEVCOM Aviation \& Missile Center}{Colorado Springs, CO}
+  \subtitle{Technical Lead}{Mar 2025 \textbf{--} Mar 2026}
+  \begin{bullets}
+    \item Led engineering teams of government, FFRDC, and contractor personnel to deliver AI/ML research as operational software capabilities for the Warfighter
+    \item Developed and presented technical roadmaps to senior leadership, communicating milestones, risks, and challenges to guide strategic decisions
+    \item Briefed potential stakeholders on project capabilities to drive engagement and buy-in from COCOMs and other DoD organizations
+    \item[] \textbf{Letter of Recognition} from the \textbf{Software, Simulations, and Systems Integration Director, SES}, for [describe accomplishment]
+    \item[] \textbf{Certificate of Achievement} from the \textbf{Aviation and Missile Center Director, SES}, for [describe accomplishment]
+  \end{bullets}
 
-    \resumeSubheading
-      {Electrical \& Computer Engineering College}{Fort Collins, CO}
-      {Student Ambassador}{Aug 2012 \textbf{--} Aug 2014}
-        \resumeItemListStart
-            \resumeItem{Engaged prospective students during recruitment events to promote interest in the college's programs and drive enrollment growth}
-        \resumeItemListEnd
+  \heading{U.S. Army DEVCOM Aviation \& Missile Center}{Colorado Springs, CO}
+  \subtitle{Software Engineer}{Apr 2018 \textbf{--} Mar 2025}
+  \begin{bullets}
+    \item Employed Amazon Web Services to deploy critical infrastructure such as CI/CD pipelines and collaboration tools to support various government efforts
+    \item Leveraged technologies such as the Atlassian tool suite and GitLab to capture customer requirements, document design decisions, and accelerate the development process
+    \item Partnered with small businesses on SBIR/STTR contracts, overseeing progress and deliverables while providing technical guidance to maximize government value
+    \item Utilized SysML and Cameo to develop system models, supporting early-stage architecture design, analysis, and CONOPs
+    \item Mentored student interns and new employees by delegating meaningful tasks that foster skill development and professional growth
+    \item Evaluated research proposals for technical and commercial merit while ensuring alignment with Agency priorities
+  \end{bullets}
 
-  \resumeSubHeadingListEnd
+\end{entries}
+
+%----------- PROJECTS -----------
+
+\section{Projects}
+\vspace{2pt}
+\begin{entries}
+
+  \heading{AFSIM Reinforcement Learning Environment}{}
+  \begin{bullets}
+    \item Designed and delivered solutions for a Python Reinforcement Learning environment that integrates AFSIM and graph based observations to optimize blue force outcomes
+    \item Developed code to procedurally generate sufficiently random AFSIM scenarios, providing a reinforcement learning agent with enough experiences to enhance generalization across the entire problem space
+    \item Built Regex- and Jinja2-powered scripts to parse hundreds of AFSIM model files into a Python interface, enabling better scenario generation and a richer feature space
+    \item Optimized Docker and Docker Compose configurations, reducing environment development image size by 60\%, dramatically reducing build times and accelerating deployments to a classified network
+  \end{bullets}
+
+  \heading{Modeling \& Simulation Framework Trade Study}{}
+  \begin{bullets}
+    \item Directed research and assessment of multiple M\&S frameworks, coordinating tasks with government and contractor personnel
+    \item Developed objective evaluation criteria and formalized use cases to determine the most suitable framework
+    \item Compiled findings into a comprehensive report and presented key insights to leadership for decision-making
+  \end{bullets}
+
+\end{entries}
 
 %----------- EDUCATION -----------
 
 \section{Education}
-  \vspace{2pt}
-  \resumeSubHeadingListStart
-    \resumeEducationHeading
-      {Colorado State University}{Fort Collins, CO}
-      {B.S. in Computer Engineering}{Aug 2012 \textbf{--} Dec 2017}
-      {B.S. in Mathematics, Concentration in Information Security}{Aug 2012 \textbf{--} Dec 2017}
-  \resumeSubHeadingListEnd
+\vspace{2pt}
+\begin{entries}
 
-%----------- AWARDS & ACHIEVEMENTS -----------
+  \heading{University of Colorado Colorado Springs}{Colorado Springs, CO}
+  \subtitle{M.E. in Space Operations}{June 2026 \textbf{--} Present}
 
-% \section{Awards \& Certificates}
-%   \vspace{2pt}
-%   \resumeSubHeadingListStart
-%     \small{\item{ 
-%         \textbf{Engineering \& Technical Management DAWIA Certificate}{ Department of Defense certification in Engineering \& Technical Management, emphasizing systems engineering and acquisition leadership. } \\ \vspace{3pt}
-%         \textbf{Achievement Award: }{ Recognized for outstanding support during COCOM exercise } \\ \vspace{3pt}
-%         \textbf{Achievement Award: }{ Recognized for providing exceptional service by completing proposal reviews under strict timelines} \\ \vspace{3pt}
+  \heading{Colorado State University}{Fort Collins, CO}
+  \subtitle{B.S. in Computer Engineering}{Aug 2012 \textbf{--} Dec 2017}
+  \subtitle{B.S. in Mathematics, Concentration in Information Security}{Aug 2012 \textbf{--} Dec 2017}
 
-%     }}
-%   \resumeSubHeadingListEnd
-
-
+\end{entries}
 
 \end{document}
