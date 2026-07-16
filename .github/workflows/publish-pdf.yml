@@ -1,0 +1,40 @@
+name: Publish PDF
+
+# Builds carrico_resume.tex on every push to master and force-pushes the
+# result to the "pdf" branch, so the compiled PDF is never committed to
+# master itself. index.html points at the pdf branch's raw URL.
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "carrico_resume.tex"
+      - ".github/workflows/publish-pdf.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: carrico_resume.tex
+
+      - name: Stage PDF for publishing
+        run: |
+          mkdir -p dist
+          cp carrico_resume.pdf dist/
+
+      - name: Publish PDF to pdf branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: pdf
+          folder: dist
+          clean: true
+          single-commit: true

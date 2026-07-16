@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Verifies carrico_resume.tex still compiles before allowing a push.
+# Requires the texbuilder:0.1.0 image (see github.com/chrismcarrico/texbuilder).
+# Enabled via: git config core.hooksPath .githooks
+set -euo pipefail
+
+repo_root="$(git rev-parse --show-toplevel)"
+cd "$repo_root"
+
+echo "Verifying carrico_resume.tex builds before push..."
+if ! make build; then
+  echo
+  echo "Build failed - push aborted. Fix the LaTeX errors above, or skip this check with 'git push --no-verify'." >&2
+  exit 1
+fi
+
+echo "Build OK."
