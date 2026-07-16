@@ -48,19 +48,6 @@
 % Ensure that generate pdf is machine readable/ATS parsable
 \pdfgentounicode=1
 
-%-------------------------
-% Custom commands
-%
-% Layout model for one entry:
-%   \heading{Name}{Location}      bold left / plain right, starts the entry
-%   \subtitle{Title}{Date range}  italic left / italic right, optional, no
-%                                 new bullet -- renders directly under \heading
-%   \begin{bullets} \item ... \end{bullets}   optional detail bullets
-
-% Each transition's spacing is owned by exactly one place: the gap between
-% entries lives on \heading's leading vspace, the gap between a heading and
-% its subtitle lives on \subtitle's leading vspace, and the gap before the
-% detail bullets lives on \bullets' leading vspace.
 \newenvironment{entries}
   {\begin{itemize}[leftmargin=0.15in, label={}, topsep=0pt, parsep=0pt, itemsep=0pt]}
   {\end{itemize}}
@@ -101,18 +88,6 @@
     \faLinkedinSquare \hspace{.5pt} linkedin.com/in/chrismcarrico
 \end{center}
 
-%----------- SKILLS -----------
-
-% \section{Skills}
-% \vspace{2pt}
-% \begin{entries}
-%   \small{\item{
-%       \textbf{Languages: }{Python, C, \Cplusplus,  \Csharp,  Javascript} \\ \vspace{3pt}
-%       \textbf{Technologies: }{Docker, Docker Compose, Git, AWS } \\ \vspace{3pt}
-%       \textbf{Methodologies: }{Agile, CI/CD, Test Driven Development } \\ \vspace{3pt}
-%   }}
-% \end{entries}
-
 %----------- EXPERIENCE -----------
 
 \section{Experience}
@@ -122,8 +97,7 @@
   \heading{The Aerospace Corporation}{Colorado Springs, CO}
   \subtitle{Modeling \& Simulations Systems Architect}{Mar 2026 \textbf{--} Present}
   \begin{bullets}
-    \item Placeholder
-    \item[] \textbf{SPOT Award} for [describe accomplishment]
+    \item[] \textbf{SPOT Award}
   \end{bullets}
 
   \heading{U.S. Army DEVCOM Aviation \& Missile Center}{Colorado Springs, CO}
@@ -132,8 +106,8 @@
     \item Led engineering teams of government, FFRDC, and contractor personnel to deliver AI/ML research as operational software capabilities for the Warfighter
     \item Developed and presented technical roadmaps to senior leadership, communicating milestones, risks, and challenges to guide strategic decisions
     \item Briefed potential stakeholders on project capabilities to drive engagement and buy-in from COCOMs and other DoD organizations
-    \item[] \textbf{Letter of Recognition} from the \textbf{Software, Simulations, and Systems Integration Director, SES}, for [describe accomplishment]
-    \item[] \textbf{Certificate of Achievement} from the \textbf{Aviation and Missile Center Director, SES}, for [describe accomplishment]
+    \item[] \textbf{Letter of Recognition} from \textbf{Software, Simulations, and Systems Integration Director, SES}
+    \item[] \textbf{Certificate of Achievement} from \textbf{Aviation and Missile Center Director, SES}
   \end{bullets}
 
   \heading{U.S. Army DEVCOM Aviation \& Missile Center}{Colorado Springs, CO}
